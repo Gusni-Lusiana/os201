@@ -4,7 +4,7 @@
   
 <div align="center"> <img src="https://media.giphy.com/media/dNgK7Ws7y176U/giphy.gif" width="20%"> </div>
 
-# Melakukan login badak melalui cmd windows
+# Cara Akses/Login Kawung dan Badak UI
 
 ## 1. Lakukan ssh menggunakan akun UI anda melalui kawung terlebih dahulu.
 
