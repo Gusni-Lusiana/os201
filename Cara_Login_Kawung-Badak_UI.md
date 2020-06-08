@@ -12,9 +12,7 @@
 Gusnis-MacBook-Pro:~ lusianagusni$ ssh gusni.lusiana01@kawung.cs.ui.ac.id
 gusni.lusiana01@kawung.cs.ui.ac.id's password: 
 ```
-https://ibb.co/Z6scw7c
-https://ibb.co/kQ32VN7
-https://ibb.co/JjXDxDy
+
 ### 2. Masukan pasword user UI anda untuk login ke kawung.
 
 <div align="center"> <img src="https://i.ibb.co/gM1tXht/Screen-Shot-2020-06-09-at-06-31-30.png" border="0" /> </div>
