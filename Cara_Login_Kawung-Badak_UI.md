@@ -4,18 +4,20 @@
   
 <div align="center"> <img src="https://media.giphy.com/media/dNgK7Ws7y176U/giphy.gif" width="20%"> </div>
 
-# Cara Akses/Login Kawung dan Badak UI
+# How to Access/Login to Kawung and Badak UI Using Terminal on Macbook
 
-### 1. Lakukan ssh menggunakan akun UI anda melalui kawung terlebih dahulu.
+### 1. Login SSH to Kawung
 
 ```
-D:\OneDrive\Education\UI Comp Science\semester_1\sistem_operasi\UAS>ssh gusni.lusiana01@kawung.cs.ui.ac.id
-gusni.lusiana01@kawung.cs.ui.ac.id's password:
+Gusnis-MacBook-Pro:~ lusianagusni$ ssh gusni.lusiana01@kawung.cs.ui.ac.id
+gusni.lusiana01@kawung.cs.ui.ac.id's password: 
 ```
-
+https://ibb.co/Z6scw7c
+https://ibb.co/kQ32VN7
+https://ibb.co/JjXDxDy
 ### 2. Masukan pasword user UI anda untuk login ke kawung.
 
-<div align="center"> <img src="https://i.ibb.co/9HhpXTw/1.png"> </div>
+<div align="center"> <img src="https://i.ibb.co/gM1tXht/Screen-Shot-2020-06-09-at-06-31-30.png" border="0" /> </div>
 
 ### 3. Lakukan ssh menuju badak setelah berhasil masuk dalam kawung
 
@@ -25,9 +27,9 @@ gusni.lusiana01@kawung:~$ ssh gusni.lusiana01@badak.cs.ui.ac.id
 
 ### 4. Masukkan password UI anda untuk login ke badak.
 
-<div align="center"> <img src="https://i.ibb.co/F63rNT4/2.png"> </div>
+<div align="center"> <img src="https://i.ibb.co/RzhTGRF/Screen-Shot-2020-06-09-at-06-32-29.png" border="0" />
 
 ### 5. Selamat anda berhasil akses badak, silahkan bersenang-senang bermain di dalam Badak.
 
-<div align="center"> <img src="https://i.ibb.co/NKxsVbS/3.png"> </div>
+<div align="center"> <img src="https://i.ibb.co/5hqbYbn/Screen-Shot-2020-06-09-at-06-32-51.png" border="0" /></a> </div>
 
