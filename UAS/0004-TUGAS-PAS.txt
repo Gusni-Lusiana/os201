@@ -1,0 +1,36 @@
+Script started on Mon Jun  8 21:36:39 2020
+gusni.lusiana01@badak:~$ PS1="$ "
+$ echo $GitHubUser
+Gusni-Lusiana
+$ echo $PSTAMP
+TMP1="$(date +%y%m%d-%H%M%S)"; TMP2="$(echo $TMP1-$GitHubUser-${PWD##*/}|sha1sum|cut -c1-4)"; echo "$TMP1-$TMP2-${PWD##*/}/> ";
+$ eval $PSTAMP
+200608-213717-a4a3-gusni.lusiana01/> 
+$ PS1="\$(eval \$PSTAMP)"
+200608-213728-7729-gusni.lusiana01/> echo -e $CEKSAYA
+Gusni-Lusiana ZCZCSRIPTSTART 200608-201222 Gusni-Lusiana 
+Gusni-Lusiana Gusni-Lusiana 200608-201244-f4ba-gusni.lusiana01/ 00608-201244 SEQOK SUMOK f4baeb44 
+Gusni-Lusiana Gusni-Lusiana 200608-201247-55b7-gusni.lusiana01/ 200608-201247 SEQOK SUMOK 55b7c91d 
+Gusni-Lusiana Gusni-Lusiana 200608-201253-8559-gusni.lusiana01/ 200608-201253 SEQOK SUMOK 8559f243 
+Gusni-Lusiana Gusni-Lusiana 200608-201301-89b2-gusni.lusiana01/ 200608-201301 SEQOK SUMOK 89b25ab4 
+Gusni-Lusiana ZCZCSCRIPTSTOP 200608-201307 SEQOK 
+
+200608-213737-2880-gusni.lusiana01/> echo -e $CEKSEBELA1
+Gusni-Lusiana ZCZCSRIPTSTART 200608-021323 gustifahmi 
+Gusni-Lusiana gustifahmi 200608-021346-28d3-gusti.fahmi/ 200608-021346 SEQOK SUMOK 28d3fd43 
+Gusni-Lusiana gustifahmi 200608-021353-7430-gusti.fahmi/ 200608-021353 SEQOK SUMOK 7430d95c 
+Gusni-Lusiana gustifahmi 200608-021355-d073-gusti.fahmi/ 200608-021355 SEQOK SUMOK d073a654 
+Gusni-Lusiana gustifahmi 200608-021401-ca4b-gusti.fahmi/ 200608-021401 SEQOK SUMOK ca4b1c72 
+Gusni-Lusiana ZCZCSCRIPTSTOP 200608-021408 SEQOK 
+
+200608-213752-162c-gusni.lusiana01/> echo -e $CEKSEBELA2
+Gusni-Lusiana ZCZCSCRIPTSTART 200531-112144 habelct 
+Gusni-Lusiana habelct 200531-232209-99c8-habel.christiando/ 200531-232209 SEQOK SUMOK 99c823e5 
+Gusni-Lusiana habelct 200531-232316-aada-habel.christiando/ 200531-232316 SEQOK SUMOK aadafd21 
+Gusni-Lusiana habelct 200531-232327-9ce5-habel.christiando/ 200531-232327 SEQOK SUMOK 9ce5ad43 
+Gusni-Lusiana ZCZCSCRIPTSTOP 200531-112345 SEQOK 
+
+200608-213808-7185-gusni.lusiana01/> exit
+exit
+
+Script done on Mon Jun  8 21:38:15 2020
