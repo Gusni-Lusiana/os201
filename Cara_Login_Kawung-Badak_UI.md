@@ -29,5 +29,5 @@ gusni.lusiana01@kawung:~$ ssh gusni.lusiana01@badak.cs.ui.ac.id
 
 ### 5. Selamat anda berhasil akses badak, silahkan bersenang-senang bermain di dalam Badak.
 
-<div align="center"> <img src="https://i.ibb.co/5hqbYbn/Screen-Shot-2020-06-09-at-06-32-51.png" border="0" /></a> </div>
+<div align="center"> <img src="https://i.ibb.co/5hqbYbn/Screen-Shot-2020-06-09-at-06-32-51.png" border="0" /></div>
 
