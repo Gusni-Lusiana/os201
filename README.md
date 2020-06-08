@@ -1,4 +1,12 @@
-## Welcome to GitHub Pages
+## Welcome to Gusni Lusiana GitHub Pages
+Tentang perkuliahan Sistem Operasi :
+1. [Sistem Operasi] (https://github.com/Gusni-Lusiana/os201/edit/master/README.md)
+2. Cara membuat akun github (https://github.com/Gusni-Lusiana/os201/edit/master/README.md)
+
+
+
+
+
 
 You can use the [editor on GitHub](https://github.com/Gusni-Lusiana/os201/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
