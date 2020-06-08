@@ -1,7 +1,13 @@
-## Welcome to Gusni Lusiana GitHub Pages
+## Welcome Gusni Lusiana GitHub Pages
 Tentang perkuliahan Sistem Operasi :
 1. [Sistem Operasi](https://github.com/Gusni-Lusiana/os201/edit/master/README.md)
 2. [Cara membuat akun github](https://github.com/Gusni-Lusiana/os201/edit/master/README.md)
+
+## About Me
+Hi.. Saya Gusni Lusiana
+
+## My Contact
+[gusni.lusiana01@ui.ac.id](mailto:gusni.lusiana01@ui.ac.id)
 
 
 
