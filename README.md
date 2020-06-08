@@ -13,4 +13,3 @@ Hi.. It is me, Gusni Lusiana. Call me Uci please..
 
 ## My Contact
 Email : [gusni.lusiana01@ui.ac.id](mailto:gusni.lusiana01@ui.ac.id)
-<p><a href="mailto:gusni.lusiana01@ui.ac.id">gusni.lusiana01@ui.ac.id</a></p>
