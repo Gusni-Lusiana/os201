@@ -25,7 +25,7 @@ gusni.lusiana01@kawung:~$ ssh gusni.lusiana01@badak.cs.ui.ac.id
 
 ### 4. Masukkan password UI anda untuk login ke badak.
 
-<div align="center"> <img src="https://i.ibb.co/RzhTGRF/Screen-Shot-2020-06-09-at-06-32-29.png" border="0" />
+<div align="center"> <img src="https://i.ibb.co/RzhTGRF/Screen-Shot-2020-06-09-at-06-32-29.png" border="0" /></div>
 
 ### 5. Selamat anda berhasil akses badak, silahkan bersenang-senang bermain di dalam Badak.
 
