@@ -1,4 +1,4 @@
-<center> <h2> Jolan Tru </h2> </center>
+<center> <h2> Welcome to My World </h2> </center>
   
 <div align="center"> <img src="https://media.giphy.com/media/osjgQPWRx3cac/giphy.gif"> </div>
 
