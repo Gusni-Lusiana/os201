@@ -1,8 +1,8 @@
----
-permalink: /URLs/
----
+[HOME](https://Gusni-Lusiana.github.io/os201/)
 
-[HOME](https://wahprima.github.io/os201/)
+<center> <h2> Let's Study Hard</h2> </center>
+  
+<div align="center"> <img src="https://media.giphy.com/media/dNgK7Ws7y176U/giphy.gif" width="20%"> </div>
 
 # Melakukan login badak melalui cmd windows
 
