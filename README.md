@@ -9,7 +9,7 @@ About Operating System Class :
 2. [How to Access/Login to Kawung and Badak UI](Cara_Login_Kawung-Badak_UI.md)
 
 ## About Me
-Hi.. It is me, Gusni Lusiana. Call me Uci please..
+Hi.. It's me, Gusni Lusiana. Call me Uci please..
 
 ## My Contact
 Email : [gusni.lusiana01@ui.ac.id](mailto:gusni.lusiana01@ui.ac.id)
