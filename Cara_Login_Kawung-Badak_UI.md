@@ -9,8 +9,8 @@
 ### 1. Lakukan ssh menggunakan akun UI anda melalui kawung terlebih dahulu.
 
 ```
-D:\OneDrive\Education\UI Comp Science\semester_1\sistem_operasi\UAS>ssh primaditaningtyas.w01@kawung.cs.ui.ac.id
-primaditaningtyas.w01@kawung.cs.ui.ac.id's password:
+D:\OneDrive\Education\UI Comp Science\semester_1\sistem_operasi\UAS>ssh gusni.lusiana01@kawung.cs.ui.ac.id
+gusni.lusiana01@kawung.cs.ui.ac.id's password:
 ```
 
 ### 2. Masukan pasword user UI anda untuk login ke kawung.
@@ -20,7 +20,7 @@ primaditaningtyas.w01@kawung.cs.ui.ac.id's password:
 ### 3. Lakukan ssh menuju badak setelah berhasil masuk dalam kawung
 
 ```
-primaditaningtyas.w01@kawung:~$ ssh primaditaningtyas.w01@badak.cs.ui.ac.id
+gusni.lusiana01@kawung:~$ ssh gusni.lusiana01@badak.cs.ui.ac.id
 ```
 
 ### 4. Masukkan password UI anda untuk login ke badak.
