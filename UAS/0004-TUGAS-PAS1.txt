@@ -24,7 +24,8 @@ Gusni-Lusiana gustifahmi 200608-021401-ca4b-gusti.fahmi/ 200608-021401 SEQOK SUM
 Gusni-Lusiana ZCZCSCRIPTSTOP 200608-021408 SEQOK 
 
 200608-213752-162c-gusni.lusiana01/> echo -e $CEKSEBELA2
-Gusni-Lusiana ZCZCSCRIPTSTART 200531-112144 habelct 
+Gusni-Lusiana ZCZCSCRIPTSTART 200531-112144 habelct
+Gusni-Lusiana habelct 200531-232209-99c8-habel.christiando/ 200531-232209 SEQOK SUMOK 99c823e5
 Gusni-Lusiana habelct 200531-232209-99c8-habel.christiando/ 200531-232209 SEQOK SUMOK 99c823e5 
 Gusni-Lusiana habelct 200531-232316-aada-habel.christiando/ 200531-232316 SEQOK SUMOK aadafd21 
 Gusni-Lusiana habelct 200531-232327-9ce5-habel.christiando/ 200531-232327 SEQOK SUMOK 9ce5ad43 
