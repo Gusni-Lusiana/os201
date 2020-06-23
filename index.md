@@ -6,7 +6,7 @@
 ## Welcome Gusni Lusiana GitHub Pages
 About Operating System Class :
 1. [Operating System](https://os.vlsm.org/)
-2. [How to Access/Login to Kawung and Badak UI](Cara_Login_Kawung-Badak_UI.md)
+2. [How to Access/Login to Kawung and Badak UI](URLs.md)
 
 ## About Me
 Hi.. It's me, Gusni Lusiana. Call me Uci please..
