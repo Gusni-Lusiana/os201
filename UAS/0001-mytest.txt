@@ -1,0 +1,30 @@
+Script started on Tue Jul  7 09:20:51 2020
+PS1="$ "
+date
+echo $GitHubUser
+echo $PSTAMP
+PS1="\$(eval \$PSTAMP)"
+gpg2 --list-keys
+exitgusni.lusiana01@badak:~$ PS1="$ "
+$ date
+Tue Jul  7 09:20:51 WIB 2020
+$ echo $GitHubUser
+username
+$ echo $PSTAMP
+TMP1="$(date +%y%m%d-%H%M%S)"; TMP2="$(sleep 1;echo $TMP1-$GitHubUser-${PWD##*/}|sha1sum|cut -c1-4)"; echo "$TMP1-$TMP2-${PWD##*/}/> ";
+$ PS1="\$(eval \$PSTAMP)"
+200707-092051-5c99-gusni.lusiana01/> gpg2 --list-keys
+/home/fasilkom/mahasiswa/g/gusni.lusiana01/.gnupg/pubring.gpg
+-------------------------------------------------------------
+pub   4096R/67DF6DDE 2020-02-13 [expires: 2021-02-12]
+uid       [ unknown] Operating Systems (OS) <operatingsystems@vlsm.org>
+sub   4096R/44170902 2020-02-13 [expires: 2021-02-12]
+
+pub   2048R/96959D24 2020-06-03
+uid       [ultimate] gusni.lusiana01 <gusni.lusiana01@ui.ac.id>
+sub   2048R/9867B0AB 2020-06-03
+
+200707-092052-7deb-gusni.lusiana01/> exit
+exit
+
+Script done on Tue Jul  7 09:20:57 2020
