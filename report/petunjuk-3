@@ -1,0 +1,81 @@
+1. Pelajari keluaran/script berkas "K01-TEST-RESULT.txt".
+2. Setiap anggota memilih berkas mulai dari "p00.c", "p01.c", dst.
+3. Berkas "share.c" dan "share.h" dibagi (share) bersama.
+4. Agar tidak mulai dari NOL, telah disediakan rangka program/ fungsi ala kadarnya.
+5. Tugas kelompok ialah melengkapi/ memodifikasi berkas "share.c" dan "share.h" bersama-sama.
+6. Harap mencantumkan (akunGitHub), pihak yang melakukan pelengkapan/ memodifikasi.
+7. Jika diinginkan, silakan mengubah TOTAL isi program/ fungsi yang telah disiapkan.
+6. Yang harus tetap:
+== a. isi "struct usrinfo" dan "struct myshare" dalam "share.h" tidak boleh diubah.
+== b. nama berkas untuk "SharedMemory" harus "SharedMemoryFile.bin".
+== c. nama berkas masing-masing anggota harus p00.c, p01.c, dst.
+== d. kerjakan dalam folder "TUGAS/", lalu buat berkas "tar" bernama "0003-TUGAS.tar.bz2" (sebelum dienkripsi).
+== e. berkas "0003-TUGAS.tar.bz2" HARUS dienkripsi dengan key dari "operatingsystems@vlsm.org".
+7. Yang perlu diubah ialah nilai "delay":
+== a. Nilai default "delay" berturut-turut: (p00.c: 3), (p01.c: 2), (p02.c: 1), (p03.c: 5), (p04.c: 4).
+== b. Berapa pun nilai delay, program tidak boleh "hang".
+== c. Bagaimana pun urutan delay, "p00" harus selalu exit paling akhir.
+8. Ganti isi variabel "akunGitHub" dengan nama akun GitHub masing-masing anggota kelompok.
+9. Akses "SharedMemory" secara MUTEX.  Gunakan semafor "mutex".
+== a. Setiap kali mengakses "mutex", "mutexctr++".
+== b. Setiap kali mengakses "mutex", untuk "usrinfo" dari akunGitHub tersebut, "stamp++"
+== c. Pengecualian, "state" (OPEN/CLOSED/0) diakses tanpa memeriksa semafor "mutex".
+== d. Pengecualian, inisialisasi semafor "mutex" TENTUNYA tanpa memeriksa semafor "mutex".
+== e. Inisialisasi semafor (SharedMemory) dengan fungsi "sem_init (&(mymap->mutex), 1, MUTEX)".
+10. Proses "p00":
+== a. Saat inisialisasi, "state=0";
+== b. Hanya "p00" yang dapat menset "state" menjadi "OPEN" atau "CLOSED".
+== c. Tanpa argumen, proses "p00" yang memanggil "p01", "p02", dst. 
+== d. Tanpa argumen, proses "p00" selalu exit paling akhir dengan "state=CLOSED".
+== e. Dengan sembarang argumen, proses "p00" membuat "state=OPEN", lalu langsung EXIT.
+11. Proses "p01", "p01", "p02", ...
+== a. Tanpa berkas SharedMemory, "p01", "p02", dst. langsung exit.
+== b. Jika "state==CLOSED", "p01", "p02", dst. langsung exit.
+== c. Jika "state==OPEN",   "p01", "p02", dst. dapat mengakses SharedMemory.
+12. Berkas "K00-TEST-KIT.txt"
+== a. Setiap anggota melakukan test terpisah.
+== b. Gunakan berkas "K00-TEST-KIT.txt" sebagai patokan testing.
+13. Berkas "K01-TEST-RESULT.txt"
+== a. Masukkan hasil test ke berkas "K01-TEST-RESULT.txt"
+14. Info Tambahan
+#define AKUNSIZE     30    // Jumlah karakter dalam string "akunGitHub" (minus 1).
+#define CLOSED       127   // "state==CLOSED"; "SharedMemory" TIDAK boleh diakses.
+#define MAXPROGS     20    // Maximum program. Jika diperlukan, silakan ubah.
+#define OPEN         255   // "state==OPEN";   "SharedMemory" boleh diakses.
+#define SHAREMEM     "SharedMemoryFile.bin" // nama berkas "SharedMemory"
+typedef struct {
+    char  akun [AKUNSIZE]; // penempatan string "akunGitHub".
+    int   stamp;           // posisi "mutex"
+} usrinfo;
+typedef struct {
+    usrinfo progs[MAXPROGS+1];
+    int     entry;        // usrinfo yang kosong.
+    int     state;        // lihat OPEN/CLOSED.     
+    int     mutexctr;     // jumlah penggunaan semafor mutex.
+    sem_t   mutex;        // semafor mutex agar hanya satu yang akses ShareMemory pada satu saat.
+} myshare;
+=====================
+void checkOpen(void);
+Langsung exit, jika "state=CLOSED".
+========================
+void display(int entry);  // tampilkan
+// akunGH0[progs[01] TIME[16] MUTEX[04] MMAP[OPEN] [akunGH3][akunGH0][akunGH2][akunGH1]]
+// akunGitHub entry  "mutexctr""stamp"   "OPEN/CLOSE" "entry akunGitHub dalam memory"
+========================
+int  getEntry(char* akunGitHub);
+jika sudah ada dalam SharedMemory, kembalikan nomor posisi.
+jika belum ada dalam SharedMemory, kembalikan nomor ++entry.
+==============================================
+void init(int isboss, int argc, char* argv[]);
+// init sistem;
+=====================================
+void myprint(char* str1, char* str2);
+// cetak str1 dan str2.
+=================================
+void myWait(int boss, int entry);
+jika BOSS: 1) "state=CLOSED" dan 2) tunggu hingga semua proses lain exit.
+====================================
+void putInfo(char* akun, int entry);
+// masukkan string "akunGitHub" ke dalam ShareMemory.
+15. Jangan lupa bersih-bersih.
+== a. Harap "make clean" sebelum mengumpulkan berkas.
