@@ -1,0 +1,135 @@
+Modifikasi file p00.c, p01.c dan p02.c ganti akun GitHub dan urutan Delay sesuai dengan petunjuk UAS 3. p00.c delay = 3, p01.c delay = 2, p02.c delay = 1
+Modifikasi file share.c
+#include     "share.h"
+char*        progs[]={P01, P02};
+char         tmpStr[256]={};
+extern char* akunGitHub;
+extern int   delay;
+extern int   boss;
+myshare*     mymap;
+
+		void init(int isboss, int argc, char* argv[]) {
+    if (isboss == BOSS) {
+        int ssize=sizeof(myshare);
+        int fd   =open(SHAREMEM, MYFLAGS, CHMOD);
+        fchmod   (fd, CHMOD);
+        ftruncate(fd, ssize);
+        mymap=mmap(NULL, ssize, MYPROTECTION, MYVISIBILITY, fd, 0);
+        close(fd);
+        mymap->state = OPEN;
+        sem_init (&(mymap->mutex),  1, MUTEX);
+        if(mymap->mutexctr == 0){
+        for(int a=0; a<MAXPROGS; a++){
+          mymap->progs[a].stamp = 0;
+          strcpy(mymap->progs[a].akun, "");
+        }}
+        if (argc > 1){
+          mymap->state = OPEN;
+          printf("ShareMemory is OPEN, BYE BYE ==== ====\n");
+          exit(1);
+        }
+        for(int a=0; a<2; a++){
+        if (fork() == 0) {
+           execl(progs[a], progs[a], NULL);
+	break;
+        } else {
+	sleep(delay);
+        }
+                }
+    } else {
+        sleep(delay);
+        if( access(SHAREMEM, F_OK ) == -1 ) {
+            printf("No \"%s\" file.\n", SHAREMEM);
+            exit(-1);
+        }
+        int fd=open(SHAREMEM, O_RDWR, CHMOD);
+        int ssize=sizeof(myshare);
+        mymap=mmap(NULL, ssize, MYPROTECTION, MYVISIBILITY, fd, 0);
+        close(fd);
+    }
+}
+
+void myPrint(char* str1, char* str2) {
+    printf("%s[%s]\n", str1, str2);
+    fflush(NULL);
+}
+
+int getEntry(char* akunGitHub) {
+    int entry=0;
+    sem_wait (&(mymap->mutex));
+		char temp[30];
+    strcpy(temp, akunGitHub);
+    for(int i=0;i<MAXPROGS;i++){
+char temp2[30];
+    strcpy(temp2, mymap->progs[i].akun);
+
+      if(strcmp(temp2,temp)== 0) {
+        mymap->mutexctr++;
+        mymap->progs[entry].stamp++;
+        sem_post (&(mymap->mutex));
+        return i;
+      }
+    }
+    entry = mymap->entry;
+    mymap->entry++;
+    mymap->mutexctr++;
+    mymap->progs[entry].stamp++;
+    sem_post (&(mymap->mutex));
+    return entry;
+}
+void myprint2(char* str1, char* str2) {
+    printf("%s[", str1);
+}
+
+void display(int entry) {
+    sem_wait (&(mymap->mutex));
+    mymap->mutexctr++;
+    mymap->progs[entry].stamp++;
+    myprint2(akunGitHub, akunGitHub);
+   	printf("progs[%02d] TIME[%02d] MUTEX[%02d] MMAP[%s] ", entry, mymap->mutexctr, mymap->progs[entry].stamp, "OPEN");
+
+    for(int a=0; a<mymap->entry; a++){
+      printf("[%s]", mymap->progs[a].akun);
+    }
+        printf("]\n");
+
+    sem_post (&(mymap->mutex));
+
+void putInfo(char* akun, int entry) {
+    sem_wait (&(mymap->mutex));
+    strcpy(mymap->progs[entry].akun, akun);
+    mymap->progs[entry].stamp++;
+    mymap->mutexctr++;
+    sem_post (&(mymap->mutex));
+}
+
+void checkOpen(void) {
+    if(mymap->state!=OPEN){
+        printf("ShareMemory is NOT OPEN, BYE BYE ==== ==== \n");
+        exit(0);
+    }
+}
+
+void myWait(int boss, int entry) {
+    if(boss == BOSS){
+      mymap->state = CLOSED;
+      while(wait(NULL) > 0);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    sprintf(tmpStr, "START PID[%d] PPID[%d]", getpid(), getppid());
+    myPrint(akunGitHub, tmpStr);
+    init(boss, argc, argv);
+    checkOpen();
+    sleep  (delay);
+    int entry = getEntry(akunGitHub);
+    sleep  (delay);
+    display(entry);
+    sleep  (delay);
+    putInfo(akunGitHub, entry);
+    sleep  (delay);
+    display(entry);
+    myWait (boss, entry);
+    myPrint(akunGitHub, "BYEBYE =====  ===== =====");
+}

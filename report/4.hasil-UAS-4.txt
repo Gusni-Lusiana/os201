@@ -1,0 +1,65 @@
+Persiapan 
+		$ export akunGitHub="abdulazis02"
+$ export PSTAMP="TMP1=\"\$(date +%y%m%d-%H%M%S)\"; TMP2=\"\$(sleep 1;
+Mulai Scripting
+		$ script K-04-TEST-RESULT.txt
+TEST-KIT
+PS1="$ "
+date
+echo $HOSTNAME
+echo $akunGitHub
+echo $PSTAMP
+PS1="\$(eval \$PSTAMP)"
+make clean
+./p00
+make
+./p00
+./p01
+HASIL TEST
+Script started on 2020-08-05 14:40:42+07:00
+azispro@ubuntu: ~/TUGAS4 
+$ PS1="$ "
+$ date
+Rab 05 Agu 2020 02:40:52  WIB
+$ echo $HOSTNAME
+ubuntu
+$ echo $akunGitHub
+abdulazis02
+$ echo $PSTAMP
+TMP1="$(date +%y%m%d-%H%M%S)"; TMP2="$(sleep 1;echo $TMP1-$akunGitHub-${PWD##*/}|sha1sum|cut -c1-4)"; echo "$TMP1-$TMP2-${PWD##*/}/> ";
+$ PS1="\$(eval \$PSTAMP)"
+200805-144114-be5e-TUGAS4/> make clean
+rm -f p00 p01 p02 SharedMemoryFile.bin
+200805-144118-d886-TUGAS4/> ./p00
+bash: ./p00: No such file or directory
+200805-144122-3c38-TUGAS4/> make
+gcc -std=gnu11 -pthread    p00.c share.c share.h   -o p00
+gcc -std=gnu11 -pthread    p01.c share.c share.h   -o p01
+gcc -std=gnu11 -pthread    p02.c share.c share.h   -o p02
+200805-144125-1f77-TUGAS4/> ./p00
+abdulazis02[START PID[04911] PPID[04845]]
+abdulazis02[Boss is Waiting]
+imamsetyo96[START PID[04912] PPID[04911]]
+Gusni-Lusiana[START PID[04913] PPID[04911]]
+imamsetyo96[Good Bye initNoBoss()!]
+Gusni-Lusiana[Good Bye initNoBoss()!]
+abdulazis02[All NoBosses are ready!]
+imamsetyo96[Yes, I am ready!]
+imamsetyo96[progs[00] TIME[002] MMAP[OPEN] VALUE[000] []]
+imamsetyo96[progs[00] TIME[004] MMAP[OPEN] VALUE[800] [imamsetyo96]]
+Gusni-Lusiana[Yes, I am ready!]
+abdulazis02[Yes, I am ready!]
+imamsetyo96[BYEBYE === ===== ===== =====]
+Gusni-Lusiana[progs[01] TIME[007] MMAP[OPEN] VALUE[000] [imamsetyo96][][]]
+abdulazis02[progs[02] TIME[009] MMAP[OPEN] VALUE[000] [imamsetyo96][Gusni-Lusiana][]]
+Gusni-Lusiana[progs[01] TIME[010] MMAP[OPEN] VALUE[700] [imamsetyo96][Gusni-Lusiana][]]
+Gusni-Lusiana[BYEBYE === ===== ===== =====]
+abdulazis02[progs[02] TIME[012] MMAP[OPEN] VALUE[900] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+abdulazis02[BYEBYE === ===== ===== =====]
+200805-144205-691a-TUGAS4/> ./p01
+imamsetyo96[START PID[04922] PPID[04845]]
+imamsetyo96[Good Bye initNoBoss()!]
+ShareMemory is NOT OPEN, BYE BYE ==== ==== 
+200805-144212-38ea-TUGAS4/> exit
+exit
+Script done on 2020-08-05 14:42:15+07:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,87 @@
+TEST KIT
+Berikut kode Bash yang digunakan dalam proses scripting Fuse pada TUGAS5:
+
+$ export akunGitHub="imamsetyo96"
+$ export PSTAMP="TMP1=\"\$(date +%y%m%d-%H%M%S)\"; TMP2=\"\$(sleep 1;echo \$TMP1-\$akunGitHub-\${PWD##*/}|sha1sum|cut -c1-4)\"; 
+$ echo \"\$TMP1-\$TMP2-\${PWD##*/}/> \";";
+$ echo $PSTAMP ;  
+$ eval $PSTAMP;
+
+Masuk ke dalam folder TUGAS5 untuk memulai proses scripting pada file. Lakukan tahap awal proses scripting dengan melakukan echo pada hostname dan akun github masing-masing yang sudah di export
+
+$ script K01-TEST-RESULT.txt
+$ PS1="$ "
+$ date
+$ echo $HOSTNAME
+$ echo $akunGitHub
+$ echo $PSTAMP
+$ PS1="\$(eval \$PSTAMP)"
+
+Masuk ke dalam folder fuse-tutorial-2018-02-04:
+$ cd fuse-tutorial-2018-02-04
+
+Instalasi Fuse dengan cara sebagai berikut. Cek konfigurasi paket fuse pada masing-masing versi yang digunakan:
+$ ./configure
+
+Membuat file:
+$ make
+
+Masuk ke dalam folder example:
+$ cd example/
+
+Membuat dan menampilkan seluruh isi pada folder rootdir dan mountdir:
+$ ls -al rootdir/
+$ ls -al mountdir/
+
+Duplikasi file ke dalam folder rootdir:
+$ cp ../../theFuseFile.txt rootdir/
+$ echo 'Bandingkan! (df)'
+
+Menjalankan fungsi bbfs pada fuse. Perintah df menampilkan penggunaan disk saat ini pada sistem Linux file sistem statistik. Perintah grep digunakan untuk menemukan teks termasuk subdirektori
+$ df | grep bbfs
+$ ../src/bbfs rootdir/ mountdir/
+$ echo 'Bandingkan! (df)'
+$ df | grep bbfs
+
+Cek kembali folder rootdir dan mountdir apakah virtual file system berhasil/tidak Jika berhasil, maka isi file pada direktori rootdir adalah sama dengan mountdir.
+$ ls -al rootdir/
+$ ls -al mountdir/
+
+$ cat mountdir/theFuseFile.txt
+$ sleep 1
+$ echo ''
+
+Perintah fusemounter digunakan untuk menghentikan proses fuse
+$ echo 'Penting!!! Selalu akhiri dengan perintah fusemounter'
+
+Perintah sleep digunakan untuk menghentikan sementara eksekusi pada perintah berikutnya selama beberapa detik. Perintah sleep sangat berguna ketika digunakan dalam skrip bash shell, misalnya ketika mencoba kembali operasi yang gagal atau di dalam loop.
+$ sleep 1
+
+$ echo ''
+$ fusermount -u mountdir
+$ sleep 1
+$ echo ''
+$ echo 'Bandingkan! (df)'
+$ df | grep bbfs
+$ ls -al rootdir/
+$ ls -al mountdir/
+
+Menampilkan isi berkas salinan log pada log bbfs.log:
+$ echo 'Berkas log bbfs.log'
+$ cat bbfs.log
+
+Mengakhiri proses scripting:
+$ exit
+
+Keluar folder TUGAS5 untuk membuat file tar.bz2 pada folder TUGAS5:
+$ tar -zcvf 0007-TUGAS5.tar.bz2 TUGAS5
+
+Enkripsi asimetris pada file 0007-TUGAS5.tar.bz2 yang sudah dibuat:
+$ gpg2 -o 0007-TUGAS5.tar.bz2.asc -e -r operatingsystems@vlsm.org -r imam.setyo@ui.ac.id -a 0007-TUGAS5.tar.bz2
+
+CATATAN:
+/etc/fstab: configuration of filesystems
+/etc/mtab -->  /proc/mounts: mounted filesystems
+/proc/swaps: swap filesistems
+df: checking diskspace and filesystems
+GUID (Globally Unique IDentifiers) ls -al /dev/disk/by-uuid

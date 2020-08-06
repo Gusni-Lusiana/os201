@@ -1,0 +1,90 @@
+Persiapan Test
+Persiapan 
+		$ export akunGitHub="abdulazis02"
+$ export PSTAMP="TMP1=\"\$(date +%y%m%d-%H%M%S)\"; TMP2=\"\$(sleep 1;
+Mulai Scripting
+		$ script K-01-TEST-RESULT.txt
+TEST-KIT
+PS1="$ "
+date
+echo $HOSTNAME
+echo $akunGitHub
+echo $PSTAMP
+PS1="\$(eval \$PSTAMP)"
+make clean
+./p00
+make
+./p01
+./p00
+./p01
+./p00 x
+./p01
+./p00
+./p01
+HASIL TEST
+Script started on 2020-08-05 14:31:42+07:00 
+azispro@ubuntu: ~/TUGAS
+$ PS1="$ "
+$ date
+Rab 05 Agu 2020 02:31:52  WIB
+$ echo $HOSTNAME
+ubuntu
+$ echo $akunGitHub
+abdulazis02
+$ echo $PSTAMP
+TMP1="$(date +%y%m%d-%H%M%S)"; TMP2="$(sleep 1;echo $TMP1-$akunGitHub-${PWD##*/}|sha1sum|cut -c1-4)"; echo "$TMP1-$TMP2-${PWD##*/}/> ";
+$ PS1="\$(eval \$PSTAMP)"
+200805-143216-60b5-TUGAS/> n[Kmake clean
+rm -f p00 p01 p02 SharedMemoryFile.bin
+200805-143221-1774-TUGAS/> ./p00
+bash: ./p00: No such file or directory
+200805-143227-95cd-TUGAS/> make
+gcc -std=gnu11 -pthread    p00.c share.c share.h   -o p00
+gcc -std=gnu11 -pthread    p01.c share.c share.h   -o p01
+gcc -std=gnu11 -pthread    p02.c share.c share.h   -o p02
+200805-143231-39f6-TUGAS/> ./p01
+imamsetyo96[START PID[4549] PPID[4483]]
+No "SharedMemoryFile.bin" file.
+200805-143237-3137-TUGAS/> ./p00
+abdulazis02[START PID[4557] PPID[4483]]
+imamsetyo96[START PID[4558] PPID[4557]]
+Gusni-Lusiana[START PID[4559] PPID[4557]]
+imamsetyo96[progs[00] TIME[03] MUTEX[02] MMAP[OPEN] [][]]
+Gusni-Lusiana[progs[01] TIME[04] MUTEX[02] MMAP[OPEN] [][]]
+Gusni-Lusiana[progs[01] TIME[07] MUTEX[04] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana]]
+Gusni-Lusiana[BYEBYE =====  ===== =====]
+imamsetyo96[progs[00] TIME[09] MUTEX[04] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][]]
+imamsetyo96[BYEBYE =====  ===== =====]
+abdulazis02[progs[02] TIME[10] MUTEX[02] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][]]
+abdulazis02[progs[02] TIME[12] MUTEX[04] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+abdulazis02[BYEBYE =====  ===== =====]
+200805-143300-70a2-TUGAS/> ./p01
+imamsetyo96[START PID[4568] PPID[4483]]
+ShareMemory is NOT OPEN, BYE BYE ==== ==== 
+200805-143308-8e43-TUGAS/> ./p00 x
+abdulazis02[START PID[4576] PPID[4483]]
+ShareMemory is OPEN, BYE BYE ==== ====
+200805-143313-6934-TUGAS/> ./p01
+imamsetyo96[START PID[4585] PPID[4483]]
+imamsetyo96[progs[00] TIME[14] MUTEX[06] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+imamsetyo96[progs[00] TIME[16] MUTEX[08] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+imamsetyo96[BYEBYE =====  ===== =====]
+200805-143327-17fb-TUGAS/> ./p00
+abdulazis02[START PID[4594] PPID[4483]]
+imamsetyo96[START PID[4595] PPID[4594]]
+Gusni-Lusiana[START PID[4597] PPID[4594]]
+imamsetyo96[progs[00] TIME[19] MUTEX[11] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+Gusni-Lusiana[progs[01] TIME[20] MUTEX[05] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+Gusni-Lusiana[progs[01] TIME[23] MUTEX[07] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+Gusni-Lusiana[BYEBYE =====  ===== =====]
+imamsetyo96[progs[00] TIME[25] MUTEX[14] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+imamsetyo96[BYEBYE =====  ===== =====]
+abdulazis02[progs[02] TIME[26] MUTEX[05] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+abdulazis02[progs[02] TIME[28] MUTEX[07] MMAP[OPEN] [imamsetyo96][Gusni-Lusiana][abdulazis02]]
+abdulazis02[BYEBYE =====  ===== =====]
+200805-143349-4ada-TUGAS/> ./p01
+imamsetyo96[START PID[4605] PPID[4483]]
+ShareMemory is NOT OPEN, BYE BYE ==== ==== 
+200805-143358-cb27-TUGAS/> exit
+exit
+Script done on 2020-08-05 14:34:01+07:00

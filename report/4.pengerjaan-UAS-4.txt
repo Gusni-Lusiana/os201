@@ -1,0 +1,193 @@
+Modifikasi file p00.c, p01.c dan p02.c ganti akun GitHub dan urutan Delay sesuai dengan petunjuk UAS 4. p00.c delay = 3, p01.c delay = 1, p02.c delay = 1
+Modifikasi file share.c
+#include     "share.h"
+char*        progs[]={P01, P02};
+char         tmpStr[tmpSize]={};
+extern char* akunGitHub;
+extern int   delay;
+extern int   boss;
+extern int   initValue;
+myshare*     mymap;
+
+void initBoss(int argc, char* argv[]) {
+        myPrint(akunGitHub, "Boss is Waiting");
+        int ssize=sizeof(myshare);
+        int fd   =open(SHAREMEM, MYFLAGS, CHMOD);
+        fchmod   (fd, CHMOD);
+        ftruncate(fd, ssize);
+        mymap=mmap(NULL, ssize, MYPROTECTION, MYVISIBILITY, fd, 0);
+        close(fd);
+        mymap->state = OPEN;
+  
+        sem_init (&(mymap->mutex),  1, SMUTEX);
+        sem_init (&(mymap->sync),  SSHARE, SSYNC);
+
+        if(mymap->mutexctr == 0){
+        for(int a=0; a<MAXPROGS; a++){
+          mymap->progs[a].value = 0;
+          strcpy(mymap->progs[a].akun, "");
+                  }}
+        sem_init (&(mymap->progs[0].sync),  SSHARE, SSYNC);
+  		
+        if (argc > 1){
+          mymap->state = OPEN;
+          printf("ShareMemory is OPEN, BYE BYE ==== ====\n");
+          exit(1);
+        }
+
+        for(int a=0; a<2; a++){
+          if (fork() == 0) {
+            execlp(progs[a], progs[a], NULL);
+            break;
+          } else {
+            sleep(delay);
+          }
+        }
+  
+        for (int ii=0; ii < 2; ii++){
+            // printf("1. ke- %d \n", ii);
+            sem_post(&(mymap->sync));
+            sleep(delay);
+        }
+        
+        myPrint(akunGitHub, "All NoBosses are ready!");
+        for (int ii=0; ii < 2; ii++){
+         
+            sem_post(&(mymap->progs[0].sync));
+            sleep(delay);
+        }
+}
+
+void initNotBoss(void) {
+    sleep(delay);
+    if( access(SHAREMEM, F_OK ) == -1 ) {
+            printf("No \"%s\" file.\n", SHAREMEM);
+            exit(-1);    
+    }
+    int fd=open(SHAREMEM, O_RDWR, CHMOD);
+    int ssize=sizeof(myshare);
+    mymap=mmap(NULL, ssize, MYPROTECTION, MYVISIBILITY, fd, 0);
+    close(fd);
+  	
+    if(mymap->state!=OPEN){
+        myPrint(akunGitHub, "Good Bye initNoBoss()!");
+    }
+    else{
+    sem_wait(&(mymap->sync));
+    myPrint(akunGitHub, "Good Bye initNoBoss()!");
+    sleep(delay);
+    sem_wait(&(mymap->progs[0].sync));
+    sleep(delay);
+    }
+}
+
+void init(int isboss, int argc, char* argv[]) {
+    if (isboss == BOSS){
+      initBoss(argc, argv);
+    }else{
+      initNotBoss();
+    }
+}
+
+void myPrint(char* str1, char* str2) {
+    printf("%s[%s]\n", str1, str2);
+    fflush(NULL);
+}
+
+void myprint2(char* str1, char* str2) {
+    printf("%s[", str1);
+}
+
+
+int getEntry(char* akunGitHub) {
+    int entry=0;
+    sem_wait (&(mymap->mutex));
+                char temp[30];
+    strcpy(temp, akunGitHub);
+    for(int i=0;i<MAXPROGS;i++){
+      char temp2[30];
+    strcpy(temp2, mymap->progs[i].akun);
+
+      if(strcmp(temp2,temp)== 0) {
+        mymap->mutexctr++;
+        sem_post (&(mymap->mutex));
+        return i;
+      }
+    }
+    entry = mymap->entry;
+    mymap->entry++;
+    mymap->mutexctr++;
+    sem_post (&(mymap->mutex));
+    return entry;
+}
+
+void display(int entry) {
+    sem_wait (&(mymap->mutex));
+    mymap->mutexctr++;
+    myprint2(akunGitHub, akunGitHub);
+    printf("progs[%02d] TIME[%03d] MMAP[%s] VALUE[%03d] ", entry, mymap->mutexctr,"OPEN", mymap->progs[entry].value);
+
+    for(int a=0; a<mymap->entry; a++){
+      printf("[%s]", mymap->progs[a].akun);
+    }
+      printf("]\n");
+
+    sem_post (&(mymap->mutex));
+}
+
+
+void putInfo(char* akun, int entry) {
+    sem_wait (&(mymap->mutex));
+    strcpy(mymap->progs[entry].akun, akun);
+        setValue(entry, initValue);
+    mymap->mutexctr++;
+    sem_post (&(mymap->mutex));
+}
+
+void checkOpen(void) {
+    if(mymap->state!=OPEN){
+        printf("ShareMemory is NOT OPEN, BYE BYE ==== ==== \n");
+        exit(0);
+    }
+}
+
+void myWait(int boss, int entry) {
+    sleep(delay);
+                if(boss == BOSS){
+      mymap->state = CLOSED;
+      while(wait(NULL) > 0);
+
+    }
+}
+
+void setValue(int entry, int initValue) {
+    mymap->progs[entry].value = initValue;
+}
+
+void doBoss(int entry) {
+  }
+
+void doNotBoss(int entry) {
+}
+
+
+int main(int argc, char* argv[]) {
+    sprintf(tmpStr, "START PID[%5.5d] PPID[%5.5d]", getpid(), getppid());
+    myPrint(akunGitHub, tmpStr);
+    init(boss, argc, argv);
+    checkOpen();
+
+     myPrint(akunGitHub, "Yes, I am ready!");
+    
+    sleep  (delay);
+    int entry = getEntry(akunGitHub);
+    sleep  (delay);
+    display(entry);
+       sleep  (delay);
+    putInfo(akunGitHub, entry);
+       sleep  (delay);
+    display(entry);
+       sleep  (delay);
+    myWait (boss, entry);
+    myPrint(akunGitHub, "BYEBYE === ===== ===== =====");
+}

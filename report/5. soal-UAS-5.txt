@@ -1,0 +1,67 @@
+Keluaran bbfs.log kira-kira seperti berikut:
+bb_init()
+     conn:
+     proto_major = 7
+     proto_minor = 26
+     async_read = 1
+     max_write = 131072
+     max_readahead = 131072
+     capable = 00000ffb
+     want = 00000010
+     max_background = 0
+     congestion_threshold = 0
+     context:
+     fuse = 9866b790
+     uid = 0
+     gid = 0
+     pid = 0
+     private_data = 9866a260
+     logfile = 9866b290
+     rootdir = /home/fuse/rootdir
+     umask = 00000
+     bb_access(path="/", mask=04)
+bb_fullpath:  rootdir = "/home/fuse/rootdir", path = "/", fpath = "/home/fuse/rootdir/"
+[...DST...]
+
+2.2.	Modifikasi program, sehingga log dimulai dengan nomor baris. 
+(Contoh baris 00000 hingga 00022)
+00000 
+bb_init()
+00001     conn:
+00002     proto_major = 7
+00003     proto_minor = 26
+00004     async_read = 1
+00005     max_write = 131072
+00006     max_readahead = 131072
+00007     capable = 00000ffb
+00008     want = 00000010
+00009     max_background = 0
+00010     congestion_threshold = 0
+00011     context:
+00012     fuse = 9866b790
+00013     uid = 0
+00014     gid = 0
+00015     pid = 0
+00016     private_data = 9866a260
+00017     logfile = 9866b290
+00018     rootdir = /home/fuse/rootdir
+00019     umask = 00000
+00020     bb_access(path="/", mask=04)
+00021  bb_fullpath:  rootdir = "/home/fuse/rootdir", path = "/", fpath = "/home/fuse/rootdir/"
+00022 
+[...DST...]
+
+2.3.	Modifikasi program, agar log menampilkan operasi baca.
+(Contoh isi berkas "mountdir/theFuseFile.txt" baris 00209 hingga 00210)
+[...DST...]
+00209 
+ZCZC READ ==== ====
+Hello:
+This is file "theFuseFile.txt" inside  a mounted FUSE directory.
+Jolan Tru!
+NNNN DONE ==== ====
+00210 
+[...DST...]
+
+2.4.	Jalankan serupa yang ada di "K00-TEST-KIT.txt"
+Rekam sebagai berkas "K01-TEST-RESULT.txt".
